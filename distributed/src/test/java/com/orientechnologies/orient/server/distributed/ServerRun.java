@@ -118,8 +118,8 @@ public class ServerRun {
 
       final Node otherNode = getHazelcastNode(((OHazelcastPlugin) s.server.getDistributedManager()).getHazelcastInstance());
 
-      currentNode.clusterService.removeAddress(otherNode.address, "test");
-      otherNode.clusterService.removeAddress(currentNode.address, "test");
+      currentNode.clusterService.suspectMember(
+              currentNode.clusterService.getMember(otherNode.address), "test", true);
     }
   }
 
@@ -237,7 +237,9 @@ public class ServerRun {
         if (dm != null) {
           HazelcastInstance hz = dm.getHazelcastInstance();
           final Node node = getHazelcastNode(hz);
-          node.getConnectionManager().shutdown();
+          if (node.getNetworkingService() != null) {
+            node.getNetworkingService().shutdown();
+          }
           node.shutdown(true);
           hz.getLifecycleService().terminate();
         }

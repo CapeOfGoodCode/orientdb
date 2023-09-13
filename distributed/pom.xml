@@ -37,7 +37,7 @@
     <name>OrientDB Distributed Server</name>
 
     <properties>
-        <hz.version>3.8.4</hz.version>
+        <hz.version>3.12.13</hz.version>
         <hz.aws.version>2.1.0</hz.aws.version>
         <javac.src.version>1.6</javac.src.version>
         <javac.target.version>1.6</javac.target.version>
