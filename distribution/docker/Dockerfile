@@ -3,7 +3,7 @@
 # for current developed version
 ############################################################
 
-FROM azul/zulu-openjdk:8
+FROM azul/zulu-openjdk:8-latest
 
 MAINTAINER OrientDB LTD (info@orientdb.com)
 
@@ -16,6 +16,10 @@ RUN tar -xvzf orientdb-community.tar.gz -C /orientdb --strip-components=1\
       && rm -rf /orientdb/databases/*
 
 RUN rm -rf /orientdb/databases/*
+
+RUN rm /orientdb/lib/log4j-1.2.16.jar
+RUN rm /orientdb/lib/ivy-2.3.0.jar
+RUN rm /orientdb/lib/jettison-1.3.3.jar
 
 ENV PATH /orientdb/bin:$PATH
 
